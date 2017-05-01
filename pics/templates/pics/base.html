@@ -1,0 +1,43 @@
+{% load staticfiles %}
+
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Uploadable Gallery</title>
+  <meta name="description" content="Uploadable Gallery">
+  <meta name="author" content="McKay Bonham">
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <!--<script src="{% static 'js/script.js' %}"></script>
+  Never mind, I'll just put my JavaScript within this template
+  -->
+  
+{% if picture_bank %}
+    <a href=""><img src="/static/buttons/Left Arrow.png" id="leftButtonImg" /></a>
+    <img src="/static/images/{{ file_name }}" alt="{{ this_pic.url }}" />
+    <a href=""><img src="/static/buttons/Right Arrow.png" id="rightButtonImg" /></a>
+{% else %}
+    <p>No pictures are available.</p>
+{% endif %}
+
+<form id="UploadPic" method="post" action="/pics/upload" enctype="multipart/form-data">
+  {% csrf_token %}
+  <p>
+    Upload a new picture:  
+    <input type="file" name="fileToUpload" id="fileToUpload" />
+    <input type="submit" value="Upload Image" name="submit" />
+  </p>
+</form>
+  
+</body>
+</html>
