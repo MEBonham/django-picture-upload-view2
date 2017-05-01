@@ -23,9 +23,9 @@
   -->
   
 {% if picture_bank %}
-    <a href=""><img src="/static/buttons/Left Arrow.png" id="leftButtonImg" /></a>
+    <a href="" id="leftButton"><img src="/static/buttons/Left Arrow.png" id="leftButtonImg" /></a>
     <img src="/static/images/{{ file_name }}" alt="{{ this_pic.url }}" />
-    <a href=""><img src="/static/buttons/Right Arrow.png" id="rightButtonImg" /></a>
+    <a href="" id="rightButton"><img src="/static/buttons/Right Arrow.png" id="rightButtonImg" /></a>
 {% else %}
     <p>No pictures are available.</p>
 {% endif %}
@@ -38,6 +38,18 @@
     <input type="submit" value="Upload Image" name="submit" />
   </p>
 </form>
+
+<script>
+  var galleryLength = {{ picture_bank.count }};
+  var prev = {{ idx }} - 1;
+  if (prev < 0) {
+    prev = galleryLength - 1;
+  }
+  var next = {{ idx }} + 1;
+  next = next % galleryLength;
+  document.querySelector("#leftButton").href=("/pics/" + prev);
+  document.querySelector("#rightButton").href=("/pics/" + next);
+</script>
   
 </body>
 </html>

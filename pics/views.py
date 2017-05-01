@@ -11,6 +11,7 @@ def index(request):
         'this_pic': picture_bank[0].image,
         'idx': 0,
         'file_name': picture_bank[0].file_name,
+        'galleryLength': len(picture_bank),
     }
     return render(request, 'pics/base.html', context)
     
@@ -22,6 +23,7 @@ def picture(request, page_idx):
         'this_pic': picture_bank[picture_id].image,
         'idx': picture_id,
         'file_name': picture_bank[picture_id].file_name,
+        'galleryLength': len(picture_bank),
     }
     return render(request, 'pics/base.html', context)
     
