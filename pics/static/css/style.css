@@ -1,6 +1,38 @@
+body {
+    background-color: #dddddd;
+    margin: 0px;
+    padding: 8px;
+}
+#centering {
+    width: 1050px;
+    margin: auto;
+}
+#canvas {
+    margin: auto;
+    background-color: #444444;
+    padding: 32px;
+    border-radius: 50px;
+}
+#mainPic {
+    height: 490px;
+    margin: auto;
+    display: block;
+}
 #leftButtonImg {
     width: 100px;
 }
+#leftButtonDiv {
+    float: left;
+    padding-top: 200px;
+}
 #rightButtonImg {
     width: 100px;
+}
+#rightButtonDiv {
+    float: right;
+    padding-top: 200px;
+}
+#UploadPic {
+    margin: auto;
+    width: 500px;
 }

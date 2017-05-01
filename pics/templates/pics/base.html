@@ -21,24 +21,32 @@
   <!--<script src="{% static 'js/script.js' %}"></script>
   Never mind, I'll just put my JavaScript within this template
   -->
+<div id="centering">
+  <div id="canvas">
+  {% if picture_bank %}
+    <div id="leftButtonDiv">
+      <a href="" id="leftButton"><img src="/static/buttons/Left Arrow.png" id="leftButtonImg" /></a>
+    </div>
+    <div id="rightButtonDiv">
+      <a href="" id="rightButton"><img src="/static/buttons/Right Arrow.png" id="rightButtonImg" /></a>
+    </div>
+    <div id="picDiv">
+      <img id="mainPic" src="/static/images/{{ file_name }}" alt="{{ this_pic.url }}" />
+    </div>
+  {% else %}
+      <p>No pictures are available.</p>
+  {% endif %}
+  </div>
   
-{% if picture_bank %}
-    <a href="" id="leftButton"><img src="/static/buttons/Left Arrow.png" id="leftButtonImg" /></a>
-    <img src="/static/images/{{ file_name }}" alt="{{ this_pic.url }}" />
-    <a href="" id="rightButton"><img src="/static/buttons/Right Arrow.png" id="rightButtonImg" /></a>
-{% else %}
-    <p>No pictures are available.</p>
-{% endif %}
-
-<form id="UploadPic" method="post" action="/pics/upload" enctype="multipart/form-data">
-  {% csrf_token %}
-  <p>
-    Upload a new picture:  
-    <input type="file" name="fileToUpload" id="fileToUpload" />
-    <input type="submit" value="Upload Image" name="submit" />
-  </p>
-</form>
-
+  <form id="UploadPic" method="post" action="/pics/upload" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>
+      Upload a new picture:  
+      <input type="file" name="fileToUpload" id="fileToUpload" />
+      <input type="submit" value="Upload Image" name="submit" />
+    </p>
+  </form>
+</div>
 <script>
   var galleryLength = {{ picture_bank.count }};
   var prev = {{ idx }} - 1;
@@ -49,6 +57,14 @@
   next = next % galleryLength;
   document.querySelector("#leftButton").href=("/pics/" + prev);
   document.querySelector("#rightButton").href=("/pics/" + next);
+  
+  /*
+  var m = document.querySelector("#mainPic");
+  console.log(m.naturalWidth);
+  console.log(m.clientWidth);
+  var pDiv = document.querySelector("#picDiv");
+  pDiv.style.width = m.clientWidth;
+  */
 </script>
   
 </body>
